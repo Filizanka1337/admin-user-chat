@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admina - Chat</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        #chatContainer {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #333;
+            background-color: #f9f9f9;
+        }
+        #userMessages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #adminMessageInput {
+            display: flex;
+            border-top: 1px solid #333;
+        }
+        #adminMessageInput input {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+        #adminMessageInput button {
+            padding: 5px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Panel Admina - Czat z użytkownikiem</h1>
+
+<div id="chatContainer">
+    <div id="userMessages">
+        <!-- Tutaj pojawią się wiadomości od użytkowników -->
+    </div>
+    <div id="adminMessageInput">
+        <input type="text" id="adminMessage" placeholder="Odpowiedz użytkownikowi...">
+        <button onclick="replyToUser()">Wyślij</button>
+    </div>
+</div>
+
+<script>
+    const userMessages = document.getElementById('userMessages');
+
+    function displayUserMessage(messageText) {
+        const message = document.createElement('div');
+        message.textContent = "Użytkownik: " + messageText;
+        userMessages.appendChild(message);
+    }
+
+    function replyToUser() {
+        const adminMessage = document.getElementById('adminMessage').value;
+        if (adminMessage) {
+            const message = document.createElement('div');
+            message.textContent = "Admin: " + adminMessage;
+            userMessages.appendChild(message);
+            document.getElementById('adminMessage').value = '';
+            // (Do dalszego rozwoju) – wysyłanie odpowiedzi do użytkownika np. poprzez AJAX
+        }
+    }
+</script>
+
+</body>
+</html>
